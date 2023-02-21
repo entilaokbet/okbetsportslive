@@ -16,7 +16,11 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	
 	<?php wp_head(); ?>
 </head>
 
@@ -34,7 +38,14 @@
 					<div class="col-1">
 						<div class="site-branding">
 							<div class="custom-logo">
-								<?php the_custom_logo(); ?>
+								
+								<?php 
+								//the_custom_logo();
+								$custom_logo_id = get_theme_mod( 'custom_logo' );
+								$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+								
+								?>
+								<img src="<?php echo $image[0]; ?>" class="" title="" alt="" width="79.2px" height="32px">
 							</div>
 							<?php
 								/*
@@ -61,16 +72,39 @@
 
 					<div class="col-9">
 						<nav id="site-navigation" class="main-navigation">
-						<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'okbetsportslivescore' ); ?></button>
-						<?php
-						wp_nav_menu(
-							array(
-								'theme_location' => 'menu-1',
-								'menu_id'        => 'primary-menu',
-							)
-						);
-						?>
-					</nav><!-- #site-navigation -->
+							<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'okbetsportslivescore' ); ?></button>
+
+							<div class="menu-main-menu-container">
+								<ul id="primary-menu" class="menu nav-menu">
+									<li id="menu-item-18" class="home menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-2 current_page_item menu-item-18">
+										<a href="http://localhost/okbetsportslive/" aria-current="page"><img src="http://localhost/okbetsportslive/wp-content/uploads/2023/02/akar-icons_home.png" title="Home" alt="Home"> Home</a>
+									</li>
+									
+									<li id="menu-item-17" class="sports-news menu-item menu-item-type-post_type menu-item-object-page menu-item-17">
+										<a href="http://localhost/okbetsportslive/sports-news/"><img src="http://localhost/okbetsportslive/wp-content/uploads/2023/02/ant-design_trophy-outlined.png" title="Sports News" alt="Sports News"> Sports News</a>
+									</li>
+									
+									<li id="menu-item-16" class="bookmark menu-item menu-item-type-post_type menu-item-object-page menu-item-16">
+										<a href="http://localhost/okbetsportslive/bookmark/"><img src="http://localhost/okbetsportslive/wp-content/uploads/2023/02/material-symbols_bookmark-1.png" title="Bookmark" alt="Bookmark"> Bookmark</a>
+									</li>
+								</ul>
+							</div>
+
+							<?php
+							/*
+							wp_nav_menu(
+								array(
+									'theme_location' => 'menu-1',
+									'menu_id'        => 'primary-menu',
+								)
+							);
+							*/
+							?>
+						</nav><!-- #site-navigation -->
+						<div class="search">
+							<img src="http://localhost/okbetsportslive/wp-content/uploads/2023/02/material-symbols_search.png" class="search-icon" title="Search" alt="Search">
+							<input type="text" name="search" value="" class="search-field" placeholder="Search">
+						</div>
 					</div>
 					
 					<div class="col-2">
